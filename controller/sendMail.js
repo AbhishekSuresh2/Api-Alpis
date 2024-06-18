@@ -217,12 +217,13 @@ module.exports.sendResetEmail = async (email, token) => {
 
 module.exports.sendVerifyEmail = async (email, token) => {
   return new Promise(async(resolve, rejecet) => {
+    var domain = `https://abhi-api-bvws.onrender.com`;
     var url = `http://${domain}/verifyemail?token=` + token;
 
   await smtpTransport.sendMail({
     from: fromsendemail,
     to: email,
-    subject: "SAHKAN EMAIL ANDA",
+    subject: "Abhi Api Verification Email",
     html: `
     <!DOCTYPE html>
     <html>
@@ -303,7 +304,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
     <body style="background-color: #e9ecef;">
     
       <div class="preheader" style="display: none; max-width: 0; max-height: 0; overflow: hidden; font-size: 1px; line-height: 1px; color: #fff; opacity: 0;">
-       Abhi-Api Email Verification
+        A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
       </div>
 
       <table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -314,8 +315,8 @@ module.exports.sendVerifyEmail = async (email, token) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
               <tr>
                 <td align="center" valign="top" style="padding: 36px 24px;">
-                  <a href="https://abhi-api-bvws.onrender.com" target="_blank" style="display: inline-block;">
-                  <img src="https://graph.org/file/71251b89e29c5745e493e.jpg" alt="Logo" border="0" width="100" style="display: block; width: 100px; max-width: 100px; min-width: 100px;">
+                  <a href="${domain}" target="_blank" style="display: inline-block;">
+                    <img src="https://telegra.ph/file/f492065d44c897cd3836e.png" alt="Logo" border="0" width="100" style="display: block; width: 100px; max-width: 100px; min-width: 100px;">
                   </a>
                 </td>
               </tr>
@@ -329,7 +330,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 36px 24px 0; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; border-top: 3px solid #d4dadf;">
-                  <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Abhi-Api Email Verification</h1>
+                  <h1 style="margin: 0; font-size: 32px; font-weight: 700; letter-spacing: -1px; line-height: 48px;">Menetapkan Semula Kata Laluan Anda</h1>
                 </td>
               </tr>
             </table>
@@ -344,7 +345,8 @@ module.exports.sendVerifyEmail = async (email, token) => {
     
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                  <p style="margin: 0;">Click Below Button To Verify Your Email</p>
+                  <p style="margin: 0;">
+                    Masalah melog masuk?<br>Menetapkan semula kata laluan anda adalah mudah.<br><br>Hanya tekan butang di bawah dan ikut arahan. Kami akan membantu anda beroperasi dalam masa yang singkat.</p>
                 </td>
               </tr>
 
@@ -356,7 +358,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
                         <table border="0" cellpadding="0" cellspacing="0">
                           <tr>
                             <td align="center" bgcolor="#1a82e2" style="border-radius: 6px;">
-                              <a href="${url}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Verify Email</a>
+                              <a href="${url}" target="_blank" style="display: inline-block; padding: 16px 36px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; color: #ffffff; text-decoration: none; border-radius: 6px;">Menetapkan semula kata laluan</a>
                             </td>
                           </tr>
                         </table>
@@ -369,7 +371,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
 
               <tr>
                 <td align="left" bgcolor="#ffffff" style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; border-bottom: 3px solid #d4dadf">
-                  <p style="margin: 0;">Abhi-Api<br> https://abhi-api-bvws.onrender.com</p>
+                  <p style="margin: 0;">Aliff,<br> ${domain}</p>
                 </td>
               </tr>
     
@@ -385,7 +387,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
     
               <tr>
                 <td align="center" bgcolor="#e9ecef" style="padding: 12px 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 20px; color: #666;">
-                  <p style="margin: 0;">© 2024 Abhishek Suresh</p>
+                  <p style="margin: 0;">Jika anda tidak membuat permintaan ini, sila abaikan e-mel ini..</p>
                 </td>
               </tr>
     
@@ -398,7 +400,6 @@ module.exports.sendVerifyEmail = async (email, token) => {
     
     </body>
     </html>
-
   `,
 }, (error, info) => {
   if (error) {
