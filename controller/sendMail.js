@@ -15,7 +15,7 @@ var smtpTransport = nodemailer.createTransport({
 module.exports.sendResetEmail = async (email, token) => {
   return new Promise(async(resolve, rejecet) => {
     
-  var domain = `https://abhi-api-bvws.onrender.com`
+  var domain = `https://abhi-api-bvws.onrender.com`;
   var url = `http://${domain}/reset-password?token=` + token;
 
   await smtpTransport.sendMail({
